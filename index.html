@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع Nw Team - الصفحة الرئيسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* -------------------------------------- */
+        /* المتغيرات (الألوان) */
+        /* -------------------------------------- */
+        :root {
+            --dark-bg: #101217; /* خلفية داكنة جداً */
+            --card-bg: rgba(46, 50, 60, 0.6); /* خلفية البطاقات شفافة (Frosted Glass) */
+            --menu-bg: #181818; 
+            --accent-color: #9b59b6; /* اللون المميز: بنفسجي */
+            --light-text: #f0f0f0; 
+            --border-color: #333333; 
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden; 
+        }
+
+        /* -------------------------------------- */
+        /* رأس الصفحة والقائمة */
+        /* -------------------------------------- */
+        .header {
+            width: 100%;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--dark-bg);
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: 700;
+            color: var(--accent-color); 
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(155, 89, 182, 0.9); 
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            color: var(--light-text);
+            cursor: pointer;
+        }
+        
+        .side-menu {
+            height: 100%;
+            width: 0; 
+            position: fixed;
+            z-index: 20;
+            top: 0;
+            right: auto;
+            left: 0;
+            background-color: var(--menu-bg);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .side-menu-link {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: var(--light-text);
+            display: block;
+            margin: 10px 10px;
+            background-color: #202020; 
+            border-radius: 10px;
+            text-align: right;
+            transition: background-color 0.3s;
+        }
+
+        .side-menu-link:hover {
+            background-color: var(--accent-color); 
+        }
+
+        .side-menu .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px; 
+            left: auto;
+            font-size: 36px;
+            margin-right: 0;
+            color: var(--accent-color); 
+            text-decoration: none;
+        }
+
+
+        /* -------------------------------------- */
+        /* الخطوط الفاصلة الأفقية (الـ Highlight) - تم تعزيزها */
+        /* -------------------------------------- */
+        hr {
+            border: none;
+            height: 2px; /* سماكة أكبر للوضوح */
+            background-color: rgba(155, 89, 182, 0.6); 
+            box-shadow: 0 0 10px rgba(155, 89, 182, 1); /* ظل مضيء قوي */
+            margin: 30px 0;
+            opacity: 1; 
+        }
+
+
+        /* -------------------------------------- */
+        /* المحتوى العام والحاويات */
+        /* -------------------------------------- */
+        .container {
+            width: 90%;
+            max-width: 500px; 
+            padding: 20px 0;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* -------------------------------------- */
+        /* تصميم الترحيب */
+        /* -------------------------------------- */
+        .welcome-section {
+            background-color: transparent;
+            padding: 10px 0;
+            margin-bottom: 25px;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 3px solid var(--accent-color); 
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
+        }
+
+        .welcome-message {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-color); 
+            text-shadow: 0 0 5px rgba(155, 89, 182, 0.7);
+            padding: 10px 20px;
+            background-color: #202020;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* -------------------------------------- */
+        /* تصميم البطاقات/الأزرار الكبيرة (شفافية) */
+        /* -------------------------------------- */
+        .card-button {
+            display: block;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: var(--light-text);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .card-button:hover {
+            background-color: rgba(46, 50, 60, 0.8);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: var(--accent-color); 
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #aaaaaa;
+            margin-top: 5px;
+        }
+
+
+        /* -------------------------------------- */
+        /* قسم المميزات (Feature Sections) - الهايلايت والتمويه */
+        /* -------------------------------------- */
+        .feature-section {
+            background-color: var(--card-bg); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+        }
+
+        /* 🌟 فاصل تحت العنوان 🌟 */
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f1c40f; 
+            /* إضافة خط فاصل خفيف */
+            border-bottom: 1px solid rgba(241, 196, 15, 0.3); 
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 🌟 فاصل تحت الصورة 🌟 */
+        .feature-img {
+            /* 💥 تم تكبير الأبعاد هنا إلى 160px 💥 */
+            width: 160px;
+            height: 160px;
+            margin-bottom: 25px; /* زيادة الهامش ليناسب الحجم الجديد */
+            border-radius: 10px;
+            border: none; 
+            object-fit: cover;
+            /* إضافة خط فاصل أزرق خفيف مع ظل */
+            border-bottom: 2px solid rgba(52, 120, 201, 0.5); 
+            box-shadow: 0 5px 10px rgba(52, 120, 201, 0.5);
+            padding-bottom: 5px;
+        }
+        
+        .feature-list-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 20px 0;
+            max-width: 90%;
+            text-align: right;
+        }
+
+        .feature-list li {
+            font-size: 16px;
+            color: var(--light-text);
+            margin-bottom: 10px;
+            padding-right: 20px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.15); 
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        /* تلوين النقاط */
+        .feature-list li::before {
+            content: '•';
+            color: #f1c40f; 
+            text-shadow: 0 0 5px rgba(241, 196, 15, 0.8);
+            font-size: 1.2em;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* 🌟 الأزرار (Install Button) - متدرجة ومضيئة 🌟 */
+        .install-btn {
+            display: inline-block; 
+            width: 90%; 
+            max-width: 300px; 
+            padding: 15px;
+            background: linear-gradient(145deg, #3478c9, #205c9c);
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 0 auto 15px auto; 
+            box-shadow: 0 5px 15px rgba(52, 120, 201, 0.5); 
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .install-btn:hover {
+            background: linear-gradient(145deg, #205c9c, #3478c9);
+            box-shadow: 0 5px 20px rgba(52, 120, 201, 0.8);
+        }
+
+        .install-btn i {
+            margin-left: 10px;
+        }
+
+        /* -------------------------------------- */
+        /* أزرار التواصل الاجتماعي */
+        /* -------------------------------------- */
+        .social-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            /* تم توسيع هذه الأزرار لتشغل المساحة المتبقية بعد حذف زر "تنزيل الموقع" */
+            flex-grow: 1; /* أو يمكن استخدام 0.5 للتأكيد على التوزيع المتساوي لزرين */
+            padding: 12px 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        
+        /* تم دمج تنسيقات btn-green مع الأزرار الأخرى أو تم حذفها حيث أن الزر الأخضر لم يعد موجوداً */
+        .btn-discord { 
+            background-color: #7289da; 
+            box-shadow: 0 2px 10px rgba(114, 137, 218, 0.5);
+        } 
+        .btn-youtube { 
+            background-color: #ff0000; 
+            box-shadow: 0 2px 10px rgba(255, 0, 0, 0.5);
+        } 
+
+        .social-btn i {
+            margin-left: 8px;
+        }
+
+        /* -------------------------------------- */
+        /* تذييل الصفحة */
+        /* -------------------------------------- */
+        .footer {
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 25px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sideMenu" class="side-menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+        <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('home-page'); closeNav();">الصفحة الرئيسية</a>
+        <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('ios-page'); closeNav();">هاك روبلوكس ايفون</a>
+        <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('android-page'); closeNav();">هاك روبلوكس اندرويد</a>
+        <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('pc-page'); closeNav();">هاك روبلوكس بي سي</a>
+    </div>
+
+    <div class="header">
+        <i class="fas fa-bars menu-icon" onclick="openNav()"></i> 
+        <div class="logo">NW TEAM</div>
+    </div>
+
+    <div class="container">
+
+        <div id="home-page" class="page-content active"> 
+            <div class="welcome-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446694984970408158/324d818a5fb2dba5e13e37c84200d4e4.jpg?ex=6934eb32&is=693399b2&hm=b30d18f874213ccc19e1480b6c8b81f20d985dd568b2eac95ccd92fc18a6e98a&?text=NW" alt="شعار فريق Nw Team" class="profile-img">
+                <h1 class="welcome-message">مرحباً بكم في موقع NW TEAM</h1>
+            </div>
+            
+            <a href="javascript:void(0)" class="card-button" onclick="changePage('ios-page')">
+                <i class="fas fa-mobile-alt card-icon"></i> 
+                <span class="card-title">تطبيقات iOS</span>
+                <span class="card-description">هاك روبلوكس، والمزيد</span>
+            </a>
+
+            <a href="javascript:void(0)" class="card-button" onclick="changePage('android-page')">
+                <i class="fab fa-android card-icon"></i> 
+                <span class="card-title">تطبيقات Android</span>
+                <span class="card-description">تطبيقات مميزة للأندرويد</span>
+            </a>
+
+            <a href="javascript:void(0)" class="card-button" onclick="changePage('pc-page')">
+                <i class="fas fa-laptop card-icon"></i> 
+                <span class="card-title">تطبيقات PC</span>
+                <span class="card-description">روبلوكس للكمبيوتر</span>
+            </a>
+
+            <a href="#" class="card-button">
+                <i class="fas fa-shield-alt card-icon"></i> 
+                <span class="card-title">حماية وأمان</span>
+                <span class="card-description">تطبيقات آمنة وموثوقة</span>
+            </a>
+            
+            <div class="social-buttons">
+                <a href="https://discord.gg/2Rx6rf3SRa" class="social-btn btn-discord">
+                    <i class="fab fa-discord"></i> ديسكورد
+                </a>
+                <a href="https://www.youtube.com/@nwTeam-z4w" class="social-btn btn-youtube">
+                    <i class="fab fa-youtube"></i> يوتيوب
+                </a>
+            </div>
+
+        </div> 
+        
+        <div id="ios-page" class="page-content"> 
+            
+            <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446695649016942703/6a129ff39353cd823e881bbc09b85674.jpg?ex=6934ebd1&is=69339a51&hm=cc86696aa3b3a18d4b42683efd193e3cf3ab6fa2bd15684427e1be1c3726f1bb&" alt="واجهة دلتا" class="feature-img" style="border-radius: 5px;">
+                
+                <h2 class="feature-title">مميزات هاك دلتا (iOS)</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>من أقوى الهاكات حمايتاً</li>
+                        <li>سهولة الحصول على المفتاح</li>
+                        <li>يمكنك بحث السكربتات فيه</li>
+                    </ul>
+                </div>
+
+                <a href="itms-services://?action=download-manifest&url=https%3A%2F%2Fdeltaios-executor.com%2FInstall21.plist" class="install-btn">
+                    <i class="fas fa-download"></i> Delta Install
+                </a>
+            </div>
+            
+            <hr> <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446687777650643064/Screenshot_20251206_051955_com_android_chrome_ChromeTabbedActivity.jpg?ex=6934e47c&is=693392fc&hm=bcfa68ae0b2a74e5b5993a04dac7eb60bb71749face6ac75c83f0523a8de343a&" alt="شعار سكيبكس" class="feature-img" style="border-radius: 10px;">
+                
+                <h2 class="feature-title">مميزات سكيبكس (iOS)</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>من غير مفتاح</li>
+                        <li>يوجد بحث سكريبتات</li>
+                        <li>من أقوى الهاكات حمايتاً</li>
+                        <li>متوافق مع آخر تحديثات روبلوكس</li>
+                    </ul>
+                </div>
+
+                <a href="itms-services://?action=download-manifest&url=https://skibx.com/ota.plist" class="install-btn">
+                    <i class="fas fa-download"></i> SkipX Install
+                </a>
+            </div>
+
+            <hr> <a href="javascript:void(0)" class="card-button" onclick="changePage('home-page')">
+                <i class="fas fa-arrow-right"></i> 
+                <span class="card-title">العودة إلى التطبيقات</span>
+                <span class="card-description">شاهد تطبيقاتنا الأخرى (Android, PC)</span>
+            </a>
+
+            <div class="social-buttons">
+                <a href="https://discord.gg/2Rx6rf3SRa" class="social-btn btn-discord">
+                    <i class="fab fa-discord"></i> ديسكورد
+                </a>
+                <a href="https://www.youtube.com/@nwTeam-z4w" class="social-btn btn-youtube">
+                    <i class="fab fa-youtube"></i> يوتيوب
+                </a>
+            </div>
+            
+        </div> 
+        
+        <div id="android-page" class="page-content"> 
+            
+            <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446695649016942703/6a129ff39353cd823e881bbc09b85674.jpg?ex=6934ebd1&is=69339a51&hm=cc86696aa3b3a18d4b42683efd193e3cf3ab6fa2bd15684427e1be1c3726f1bb&د]" alt="شعار أو واجهة دلتا" class="feature-img" style="border-radius: 10px;">
+                <h2 class="feature-title">هاك دلتا (Android)</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>حماية متقدمة ضد الحظر</li>
+                        <li>سهولة في الحصول على المفتاح</li>
+                        <li>تحديثات مستمرة لأداء أفضل</li>
+                        <li>دعم واسع للسكربتات</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/mzto20lhnol6x6z/Nw_Team_-_Delta_.apk/file" class="install-btn">
+                    <i class="fas fa-download"></i> Install Delta
+                </a>
+            </div>
+            
+            <hr> <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446687777650643064/Screenshot_20251206_051955_com_android_chrome_ChromeTabbedActivity.jpg?ex=6934e47c&is=693392fc&hm=bcfa68ae0b2a74e5b5993a04dac7eb60bb71749face6ac75c83f0523a8de343a&]" alt="شعار أو واجهة سكيبكس" class="feature-img" style="border-radius: 10px;">
+                <h2 class="feature-title">هاك سكيبكس (Android)</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>واجهة سهلة الاستخدام</li>
+                        <li>سرعة عالية في التنفيذ</li>
+                        <li>لا يتطلب مفتاح (Keyless)</li>
+                        <li>متوافق مع أحدث إصدارات روبلوكس</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/g4t590kmkql7b5s/Nw_Team_-_Skibx_.apk/file" class="install-btn">
+                    <i class="fas fa-download"></i> Install Skibx
+                </a>
+            </div>
+
+            <hr> <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446723390668013671/fd4OuTH_edit_76545161669392.png?ex=693505a7&is=6933b427&hm=df2cf6023f66e7e1418258424563c81f4476d8751c4075e32a8e83fe22076bf7&]" alt="شعار أو واجهة كوديكس" class="feature-img" style="border-radius: 10px;">
+                <h2 class="feature-title">هاك كوديكس (Android)</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>أفضل أداء على الأجهزة المتوسطة</li>
+                        <li>دعم متميز للسكربتات المعقدة</li>
+                        <li>حجم صغير وسرعة في التنزيل</li>
+                        <li>آمن وموثوق للاستخدام اليومي</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/fnux3i26dfn044j/Nw_Team_-_codex_.apk/file" class="install-btn">
+                    <i class="fas fa-download"></i> Install Codex
+                </a>
+            </div>
+            
+            <hr> <a href="javascript:void(0)" class="card-button" onclick="changePage('home-page')">
+                <i class="fas fa-arrow-right"></i> 
+                <span class="card-title">العودة إلى التطبيقات</span>
+                <span class="card-description">شاهد تطبيقاتنا الأخرى (iOS, PC)</span>
+            </a>
+
+            <div class="social-buttons">
+                <a href="https://discord.gg/2Rx6rf3SRa" class="social-btn btn-discord">
+                    <i class="fab fa-discord"></i> ديسكورد
+                </a>
+                <a href="https://www.youtube.com/@nwTeam-z4w" class="social-btn btn-youtube">
+                    <i class="fab fa-youtube"></i> يوتيوب
+                </a>
+            </div>
+            
+        </div> 
+        
+        <div id="pc-page" class="page-content"> 
+            
+            <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446714395723038790/Screenshot__.jpg?ex=6934fd46&is=6933abc6&hm=80be75be9700b8067246708920a17afbb59ee273fd53e8e958776e01a4f2101f&]" alt="شعار بلوكستراب" class="feature-img" style="border-radius: 10px;">
+                <h2 class="feature-title">مميزات هاك بلوكس ستراب</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>سهولة الاستخدام</li>
+                        <li>حماية ممتازه</li>
+                        <li>خلفيه اسطوريه</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/tv8jtzl4eg1dq0f/Bloxstrap-v2.9.0.exe/file" class="install-btn">
+                    <i class="fas fa-download"></i> Bloxstrap Install
+                </a>
+            </div>
+            
+            <hr> <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446714395160739880/Screenshot_20251206_065457_com_android_chrome_ChromeTabbedActivity_edit_74275476308331.jpg?ex=6934fd46&is=6933abc6&hm=497e134b5367efc343cc95892724d0bd59b6ade78c66d0ddc1724c92dfb639e4&]" alt="شعار برو هاكر" class="feature-img" style="border-radius: 10px;">
+                <h2 class="feature-title">مميزات هاك برو هاكر</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>الهاك من صنع عربي</li>
+                        <li>سهولة الاستخدام</li>
+                        <li>خلفيه اسطوريه</li>
+                    </ul>
+                </div>
+
+                <a href="https://gofile.io/d/6npfj8" class="install-btn">
+                    <i class="fas fa-download"></i> Pro Hacker Install
+                </a>
+            </div>
+
+            <hr> <div class="feature-section">
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446714395412533389/Screenshot___com_android_chrome_ChromeTabbedActivity_edit_74260462989378.jpg?ex=6934fd46&is=6933abc6&hm=a35878ffb17351325b581ad8789cdefc17913312b5115e89d648807dff648a2a&]" alt="شعار هاك اكسينو" class="feature-img" style="border-radius: 10px;">
+                <h2 class="feature-title">مميزات هاك اكسينو</h2>
+
+                <div class="feature-list-container">
+                    <ul class="feature-list">
+                        <li>حماية اسطوريه</li>
+                        <li>يمكنك بحث سكريبتات فيه</li>
+                        <li>سهولة الاستخدام</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/wevfooqddd6oiyi/Nw_Team_-_Xeno_.zip/file" class="install-btn">
+                    <i class="fas fa-download"></i> Xeno Install
+                </a>
+            </div>
+            
+            <hr> <a href="javascript:void(0)" class="card-button" onclick="changePage('home-page')">
+                <i class="fas fa-arrow-right"></i> 
+                <span class="card-title">العودة إلى التطبيقات</span>
+                <span class="card-description">شاهد تطبيقاتنا الأخرى (iOS, Android)</span>
+            </a>
+
+            <div class="social-buttons">
+                <a href="https://discord.gg/2Rx6rf3SRa" class="social-btn btn-discord">
+                    <i class="fab fa-discord"></i> ديسكورد
+                </a>
+                <a href="https://www.youtube.com/@nwTeam-z4w" class="social-btn btn-youtube">
+                    <i class="fab fa-youtube"></i> يوتيوب
+                </a>
+            </div>
+            
+        </div> 
+        
+    </div> 
+    
+    <div class="footer">
+        <p> Nw Team.</p>
+    </div>
+
+    <script>
+        // دالة لفتح القائمة الجانبية
+        function openNav() {
+            document.getElementById("sideMenu").style.width = "80%"; 
+        }
+
+        // دالة لإغلاق القائمة الجانبية
+        function closeNav() {
+            document.getElementById("sideMenu").style.width = "0";
+        }
+        
+        // دالة تبديل الصفحات
+        function changePage(pageId) {
+            // إخفاء جميع الأقسام (الصفحات)
+            var pages = document.getElementsByClassName('page-content');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            
+            // إظهار القسم (الصفحة) المطلوبة
+            document.getElementById(pageId).classList.add('active');
+        }
+        
+        // عند تحميل الصفحة، تأكد من عرض الصفحة الرئيسية أولاً
+        document.addEventListener('DOMContentLoaded', function() {
+            changePage('home-page');
+        });
+    </script>
+
+</body>
+</html>
