@@ -18,6 +18,7 @@
             --accent-color: #9b59b6; /* اللون المميز: بنفسجي */
             --light-text: #f0f0f0; 
             --border-color: #333333; 
+            --menu-link-glow: rgba(155, 89, 182, 0.4); /* توهج القائمة الجانبية */
         }
 
         body {
@@ -86,11 +87,20 @@
             background-color: #202020; 
             border-radius: 10px;
             text-align: right;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s, border-bottom 0.3s;
+            
+            /* هايلايت وتوهج افتراضي */
+            box-shadow: 0 0 5px var(--menu-link-glow);
+            /* خط ترتيبي أفقي وعمودي */
+            border-bottom: 2px solid rgba(155, 89, 182, 0.5); 
+            border-right: 4px solid var(--accent-color); 
         }
 
         .side-menu-link:hover {
             background-color: var(--accent-color); 
+            /* توهج أقوى عند التحويم */
+            box-shadow: 0 0 15px var(--accent-color), 0 0 20px var(--accent-color);
+            border-bottom: 2px solid var(--light-text); 
         }
 
         .side-menu .closebtn {
@@ -106,13 +116,13 @@
 
 
         /* -------------------------------------- */
-        /* الخطوط الفاصلة الأفقية (الـ Highlight) - تم تعزيزها */
+        /* الخطوط الفاصلة الأفقية (الـ Highlight) */
         /* -------------------------------------- */
         hr {
             border: none;
-            height: 2px; /* سماكة أكبر للوضوح */
+            height: 2px; 
             background-color: rgba(155, 89, 182, 0.6); 
-            box-shadow: 0 0 10px rgba(155, 89, 182, 1); /* ظل مضيء قوي */
+            box-shadow: 0 0 10px rgba(155, 89, 182, 1); 
             margin: 30px 0;
             opacity: 1; 
         }
@@ -123,10 +133,50 @@
         /* -------------------------------------- */
         .container {
             width: 90%;
-            max-width: 500px; 
             padding: 20px 0;
             margin: 0 auto;
             text-align: center;
+        }
+        
+        /* -------------------------------------- */
+        /* حالة التحديث (شريط حالة) - تم تصغيره وزيادة التوهج */
+        /* -------------------------------------- */
+        .update-status {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 8px 15px; /* تصغير الـ padding */
+            border-radius: 8px;
+            margin: 10px auto 20px auto; 
+            display: block; 
+            width: fit-content; /* جعل العرض يتناسب مع المحتوى */
+            text-align: center;
+            transition: all 0.3s; 
+        }
+
+        .status-updated {
+            background-color: #2ecc71; /* أخضر */
+            color: white;
+            border: 1px solid #27ae60;
+            /* 🌟🌟 زيادة التوهج (Highlight) 🌟🌟 */
+            box-shadow: 0 0 15px rgba(46, 204, 113, 1), 0 0 5px rgba(0, 0, 0, 0.5); 
+        }
+
+        .status-needs-update {
+            background-color: #f39c12; /* برتقالي/أصفر */
+            color: #101217; 
+            border: 1px solid #e67e22;
+            /* 🌟🌟 زيادة التوهج (Highlight) 🌟🌟 */
+            box-shadow: 0 0 15px rgba(243, 156, 18, 1), 0 0 5px rgba(0, 0, 0, 0.5); 
+        }
+
+        /* -------------------------------------- */
+        /* باقي التنسيقات (لم تتغير) */
+        /* -------------------------------------- */
+
+        @media (min-width: 576px) {
+            .container {
+                max-width: 500px; 
+            }
         }
         
         .page-content {
@@ -143,9 +193,6 @@
             to { opacity: 1; }
         }
 
-        /* -------------------------------------- */
-        /* تصميم الترحيب */
-        /* -------------------------------------- */
         .welcome-section {
             background-color: transparent;
             padding: 10px 0;
@@ -159,14 +206,14 @@
             object-fit: cover;
             border: 3px solid var(--accent-color); 
             margin-bottom: 15px;
-            box-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
+            box-shadow: 0 0 15px rgba(155, 89, 182, 0.8); 
         }
 
         .welcome-message {
             font-size: 18px;
             font-weight: 700;
             color: var(--accent-color); 
-            text-shadow: 0 0 5px rgba(155, 89, 182, 0.7);
+            text-shadow: 0 0 8px rgba(155, 89, 182, 0.9); 
             padding: 10px 20px;
             background-color: #202020;
             border-radius: 8px;
@@ -174,9 +221,6 @@
             display: inline-block;
         }
 
-        /* -------------------------------------- */
-        /* تصميم البطاقات/الأزرار الكبيرة (شفافية) */
-        /* -------------------------------------- */
         .card-button {
             display: block;
             background-color: var(--card-bg);
@@ -187,18 +231,20 @@
             margin-bottom: 15px;
             text-decoration: none;
             color: var(--light-text);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4), 0 4px 8px rgba(0, 0, 0, 0.4);
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.2s, background-color 0.2s;
+            border: 1px solid rgba(155, 89, 182, 0.3); 
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
         }
 
         .card-button:hover {
             background-color: rgba(46, 50, 60, 0.8);
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(155, 89, 182, 0.6), 0 4px 8px rgba(0, 0, 0, 0.4); 
         }
 
         .card-icon {
-            font-size: 40px;
+            font-size: 40px; 
             color: var(--accent-color); 
             margin-bottom: 10px;
             display: block;
@@ -216,10 +262,6 @@
             margin-top: 5px;
         }
 
-
-        /* -------------------------------------- */
-        /* قسم المميزات (Feature Sections) - الهايلايت والتمويه */
-        /* -------------------------------------- */
         .feature-section {
             background-color: var(--card-bg); 
             backdrop-filter: blur(8px);
@@ -228,59 +270,29 @@
             padding: 20px;
             margin-bottom: 25px;
             text-align: center;
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.15); 
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(155, 89, 182, 0.3); 
         }
 
-        /* 🌟 فاصل تحت العنوان 🌟 */
         .feature-title {
-            font-size: 20px;
+            font-size: 24px; 
             font-weight: 700;
             color: #f1c40f; 
-            /* إضافة خط فاصل خفيف */
-            border-bottom: 1px solid rgba(241, 196, 15, 0.3); 
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.8); 
+            border-bottom: 2px solid rgba(241, 196, 15, 0.5); 
+            padding-bottom: 12px;
+            margin-bottom: 25px;
         }
         
-        /* -------------------------------------- */
-        /* حالة التحديث */
-        /* -------------------------------------- */
-        .update-status {
-            font-size: 16px;
-            font-weight: 700;
-            padding: 8px;
-            border-radius: 8px;
-            margin-top: -15px; /* رفعها قليلاً لتكون تحت العنوان مباشرة */
-            margin-bottom: 20px;
-            display: inline-block;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .status-updated {
-            background-color: #2ecc71; /* أخضر */
-            color: white;
-        }
-
-        .status-needs-update {
-            background-color: #f39c12; /* برتقالي/أصفر */
-            color: #101217; /* نص داكن لزيادة التباين */
-        }
-
-        /* 🌟 فاصل تحت الصورة 🌟 */
         .feature-img {
-            /* 💥 تم تكبير الأبعاد هنا إلى 160px 💥 */
             width: 160px;
             height: 160px;
-            margin-bottom: 25px; /* زيادة الهامش ليناسب الحجم الجديد */
+            margin-bottom: 25px; 
             border-radius: 10px;
             border: none; 
             object-fit: cover;
-            /* إضافة خط فاصل أزرق خفيف مع ظل */
             border-bottom: 2px solid rgba(52, 120, 201, 0.5); 
-            box-shadow: 0 5px 10px rgba(52, 120, 201, 0.5);
+            box-shadow: 0 5px 15px rgba(52, 120, 201, 0.7); 
             padding-bottom: 5px;
         }
         
@@ -295,17 +307,17 @@
             margin: 10px 0 20px 0;
             max-width: 90%;
             text-align: right;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .feature-list li {
             font-size: 16px;
             color: var(--light-text);
             margin-bottom: 10px;
-            padding-right: 20px;
+            padding: 8px 20px 8px 10px; 
             position: relative;
-            background-color: rgba(0, 0, 0, 0.15); 
-            padding-top: 5px;
-            padding-bottom: 5px;
+            background-color: #202020; 
             border-radius: 5px;
             margin-top: 5px;
         }
@@ -321,8 +333,7 @@
             top: 50%;
             transform: translateY(-50%);
         }
-
-        /* 🌟 الأزرار (Install Button) - متدرجة ومضيئة 🌟 */
+        
         .install-btn {
             display: inline-block; 
             width: 90%; 
@@ -335,23 +346,71 @@
             text-decoration: none;
             border-radius: 10px;
             margin: 0 auto 15px auto; 
-            box-shadow: 0 5px 15px rgba(52, 120, 201, 0.5); 
+            box-shadow: 0 8px 20px rgba(52, 120, 201, 0.7); 
             border: none;
             transition: all 0.3s;
         }
 
         .install-btn:hover {
             background: linear-gradient(145deg, #205c9c, #3478c9);
-            box-shadow: 0 5px 20px rgba(52, 120, 201, 0.8);
+            box-shadow: 0 8px 30px rgba(52, 120, 201, 1); 
+            transform: translateY(-3px);
         }
 
         .install-btn i {
             margin-left: 10px;
         }
+        
+        .script-container {
+            width: 95%;
+            margin: 20px auto;
+            text-align: right;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+        }
 
-        /* -------------------------------------- */
-        /* أزرار التواصل الاجتماعي */
-        /* -------------------------------------- */
+        .script-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: #0d0e11;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+            direction: ltr; 
+        }
+
+        .copy-btn {
+            display: block;
+            width: 90%;
+            max-width: 300px;
+            padding: 12px;
+            margin: 15px auto 0 auto;
+            background-color: #3498db; 
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.5);
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.03);
+        }
+
         .social-buttons {
             display: flex;
             justify-content: space-between;
@@ -360,8 +419,7 @@
         }
 
         .social-btn {
-            /* تم توسيع هذه الأزرار لتشغل المساحة المتبقية بعد حذف زر "تنزيل الموقع" */
-            flex-grow: 1; /* أو يمكن استخدام 0.5 للتأكيد على التوزيع المتساوي لزرين */
+            flex-grow: 1; 
             padding: 12px 10px;
             border: none;
             border-radius: 8px;
@@ -372,10 +430,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        /* تم دمج تنسيقات btn-green مع الأزرار الأخرى أو تم حذفها حيث أن الزر الأخضر لم يعد موجوداً */
+        .social-btn:hover {
+             transform: translateY(-2px);
+             opacity: 0.9;
+        }
+
         .btn-discord { 
             background-color: #7289da; 
             box-shadow: 0 2px 10px rgba(114, 137, 218, 0.5);
@@ -389,9 +451,6 @@
             margin-left: 8px;
         }
 
-        /* -------------------------------------- */
-        /* تذييل الصفحة */
-        /* -------------------------------------- */
         .footer {
             width: 100%;
             padding: 15px 0;
@@ -416,6 +475,7 @@
         <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('ios-page'); closeNav();">هاك روبلوكس ايفون</a>
         <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('android-page'); closeNav();">هاك روبلوكس اندرويد</a>
         <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('pc-page'); closeNav();">هاك روبلوكس بي سي</a>
+        <a href="javascript:void(0)" class="side-menu-link" onclick="changePage('scripts-page'); closeNav();">سكربتاتنا</a>
     </div>
 
     <div class="header">
@@ -449,10 +509,10 @@
                 <span class="card-description">روبلوكس للكمبيوتر</span>
             </a>
 
-            <a href="#" class="card-button">
-                <i class="fas fa-shield-alt card-icon"></i> 
-                <span class="card-title">حماية وأمان</span>
-                <span class="card-description">تطبيقات آمنة وموثوقة</span>
+            <a href="javascript:void(0)" class="card-button" onclick="changePage('scripts-page')">
+                <i class="fas fa-code card-icon"></i> 
+                <span class="card-title">سكربتاتنا</span>
+                <span class="card-description">أفضل سكربتات روبلوكس جاهزة للنسخ</span>
             </a>
             
             <div class="social-buttons">
@@ -549,36 +609,36 @@
                     </ul>
                 </div>
 
-                <a href="https://www.mediafire.com/file/mzto20lhnol6x6z/Nw_Team_-_Delta_.apk/file" class="install-btn">
+                <a href="https://delta.filenetwork.vip/file/Delta-2.700.937.apk" class="install-btn">
                     <i class="fas fa-download"></i> Install Delta
                 </a>
             </div>
             
             <hr> <div class="feature-section">
-                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446687777650643064/Screenshot_20251206_051955_com_android_chrome_ChromeTabbedActivity.jpg?ex=6934e47c&is=693392fc&hm=bcfa68ae0b2a74e5b5993a04dac7eb60bb71749face6ac75c83f0523a8de343a&]" alt="شعار أو واجهة سكيبكس" class="feature-img" style="border-radius: 10px;">
-                <h2 class="feature-title">هاك سكيبكس (Android)</h2>
+                <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446935309181911321/Screenshot_20251206_214337_com_android_chrome_ChromeTabbedActivity.jpg?ex=6935cb04&is=69347984&hm=d8b99fa9ede399b81cab8f1c30589f2a7ad083de6ea093d7838eecc1eac25ecf&]" alt="شعار أو واجهة فيغا إكس" class="feature-img" style="border-radius: 10px;">
+                <h2 class="feature-title">هاك Vega X </h2>
                 
-                <div class="update-status status-needs-update"> 
-                    <i class="fas fa-exclamation-triangle"></i> يتطلب تحديث حالياً
+                <div class="update-status status-updated"> 
+                    <i class="fas fa-check-circle"></i> الهاك شغال ومحدث
                 </div> 
 
                 <div class="feature-list-container">
                     <ul class="feature-list">
-                        <li>واجهة سهلة الاستخدام</li>
+                        <li>واجهه جميله</li>
                         <li>سرعة عالية في التنفيذ</li>
-                        <li>لا يتطلب مفتاح (Keyless)</li>
+                        <li>تشغيل جميع السكربتات</li>
                         <li>متوافق مع أحدث إصدارات روبلوكس</li>
                     </ul>
                 </div>
 
-                <a href="https://www.mediafire.com/file/g4t590kmkql7b5s/Nw_Team_-_Skibx_.apk/file" class="install-btn">
-                    <i class="fas fa-download"></i> Install Skibx
+                <a href="https://github.com/1f0yt/community/releases/download/Vegax/Vega.X.apk" class="install-btn">
+                    <i class="fas fa-download"></i> Install Vega X
                 </a>
             </div>
 
             <hr> <div class="feature-section">
                 <img src="https://cdn.discordapp.com/attachments/1439271758933790803/1446723390668013671/fd4OuTH_edit_76545161669392.png?ex=693505a7&is=6933b427&hm=df2cf6023f66e7e1418258424563c81f4476d8751c4075e32a8e83fe22076bf7&]" alt="شعار أو واجهة كوديكس" class="feature-img" style="border-radius: 10px;">
-                <h2 class="feature-title">هاك كوديكس (Android)</h2>
+                <h2 class="feature-title">هاك CODEX</h2>
                 
                 <div class="update-status status-updated">
                     <i class="fas fa-check-circle"></i> الهاك محدث ويعمل
@@ -593,7 +653,7 @@
                     </ul>
                 </div>
 
-                <a href="https://www.mediafire.com/file/fnux3i26dfn044j/Nw_Team_-_codex_.apk/file" class="install-btn">
+                <a href="https://codexexecutor.net/android-download/" class="install-btn">
                     <i class="fas fa-download"></i> Install Codex
                 </a>
             </div>
@@ -697,6 +757,42 @@
             
         </div> 
         
+        <div id="scripts-page" class="page-content"> 
+            
+            <div class="feature-section">
+                <h2 class="feature-title">سكربت Hitbox وميزات اكثر</h2>
+                
+                <p style="font-size: 16px; color: #aaa; margin-top: -10px;">قم بنسخ السكربت وضعه في أي من الهاكات التي تدعم الـ Loadstring.</p>
+                
+                <div class="script-container">
+                    <textarea id="mainScript" class="script-textarea" readonly>loadstring(game:HttpGet('https://raw.githubusercontent.com/Majeedl12/ScriptsByM7/refs/heads/main/Nw.%20Team.%20Lua'))()</textarea>
+                    
+                    <button class="copy-btn" onclick="copyScript()">
+                        <i class="fas fa-copy"></i> نسخ السكربت
+                    </button>
+                </div>
+
+            </div>
+
+            <hr> <a href="javascript:void(0)" class="card-button" onclick="changePage('home-page')">
+                <i class="fas fa-arrow-right"></i> 
+                <span class="card-title">العودة إلى الصفحة الرئيسية</span>
+                <span class="card-description">لمشاهدة تطبيقات الهاك</span>
+            </a>
+
+            <div class="social-buttons">
+                <a href="https://discord.gg/2Rx6rf3SRa" class="social-btn btn-discord">
+                    <i class="fab fa-discord"></i> ديسكورد
+                </a>
+                <a href="https://www.youtube.com/@nwTeam-z4w" class="social-btn btn-youtube">
+                    <i class="fab fa-youtube"></i> يوتيوب
+                </a>
+            </div>
+
+        </div>
+
+
+        
     </div> 
     
     <div class="footer">
@@ -726,6 +822,25 @@
             document.getElementById(pageId).classList.add('active');
         }
         
+        // دالة نسخ السكربت
+        function copyScript() {
+            var copyText = document.getElementById("mainScript");
+            
+            // تحديد النص في مربع النصوص
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // للأجهزة المحمولة
+            
+            // نسخ النص
+            navigator.clipboard.writeText(copyText.value)
+                .then(() => {
+                    alert("تم نسخ السكربت بنجاح: " + copyText.value);
+                })
+                .catch(err => {
+                    console.error('فشل النسخ: ', err);
+                    alert("فشل النسخ، يرجى المحاولة يدوياً.");
+                });
+        }
+
         // عند تحميل الصفحة، تأكد من عرض الصفحة الرئيسية أولاً
         document.addEventListener('DOMContentLoaded', function() {
             changePage('home-page');
